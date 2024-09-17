@@ -41,7 +41,7 @@ const Brand = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <ul className="flex flex-col gap-4 text-sm lg:text-base text-[#767676]">
+          <ul className="flex flex-col gap-4 text-sm lg:text-base dark:bg-gray-800 dark:text-white">
             {brands.map((item) => (
               <li
                 key={item._id}

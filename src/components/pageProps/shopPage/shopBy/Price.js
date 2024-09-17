@@ -42,7 +42,7 @@ const Price = () => {
           {priceList.map((item) => (
             <li
               key={item._id}
-              className="border-b-[1px] border-b-[#F0F0F0] pb-2 flex items-center gap-2 hover:text-primeColor hover:border-gray-400 duration-300"
+              className="border-b-[1px] border-b-[#F0F0F0] pb-2 flex items-center gap-2 dark:bg-gray-800 dark:text-white hover:border-gray-400 duration-300"
             >
               ${item.priceOne.toFixed(2)} - ${item.priceTwo.toFixed(2)}
             </li>
