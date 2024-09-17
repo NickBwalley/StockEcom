@@ -5,12 +5,20 @@ import { addToCart } from "../../../redux/orebiSlice";
 const ProductInfo = ({ productInfo }) => {
   const dispatch = useDispatch();
   return (
-    <div className="flex flex-col gap-5">
-      <h2 className="text-4xl font-semibold">{productInfo.productName}</h2>
-      <p className="text-xl font-semibold">${productInfo.price}</p>
-      <p className="text-base text-gray-600">{productInfo.des}</p>
-      <p className="text-sm">Be the first to leave a review.</p>
-      <p className="font-medium text-lg">
+    <div className="flex flex-col gap-5 dark:bg-gray-800 dark:text-white px-4 py-4 rounded-md">
+      <h2 className="text-4xl font-semibold dark:bg-gray-800 dark:text-white">
+        {productInfo.productName}
+      </h2>
+      <p className="text-xl font-semibold dark:bg-gray-800 dark:text-white">
+        ${productInfo.price}
+      </p>
+      <p className="text-base  dark:bg-gray-800 dark:text-white">
+        {productInfo.des}
+      </p>
+      <p className="text-sm dark:bg-gray-800 dark:text-white">
+        Be the first to leave a review.
+      </p>
+      <p className="font-medium text-lg dark:bg-gray-800 dark:text-white">
         <span className="font-normal">Colors:</span> {productInfo.color}
       </p>
       <button
@@ -27,7 +35,7 @@ const ProductInfo = ({ productInfo }) => {
             })
           )
         }
-        className="w-full py-4 bg-primeColor hover:bg-black duration-300 text-white text-lg font-titleFont"
+        className="w-full py-4 hover:bg-black duration-300 text-white text-lg font-titleFont bg-green-500 rounded-md"
       >
         Add to Cart
       </button>

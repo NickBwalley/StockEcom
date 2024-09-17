@@ -29,11 +29,14 @@ const Footer = () => {
     <div className="w-full bg-[#F5F5F3] py-20 dark:bg-gray-800 dark:text-white">
       <div className="max-w-container mx-auto grid grid-cols-1 md:grid-cols-2  xl:grid-cols-6 px-4 gap-10">
         <div className="col-span-2">
-          <FooterListTitle title=" More about Orebi Shop" />
+          <FooterListTitle title=" More about StockEcom Shop" />
           <div className="flex flex-col gap-6">
             <p className="text-base w-full xl:w-[80%]">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim sint
-              ab ullam, numquam nesciunt in.
+              At StockEcom, our vision is to revolutionize the ecommerce
+              landscape by seamlessly blending cutting-edge technology with
+              exceptional user experiences. We strive to empower our customers
+              with an intuitive, sustainable, and personalized shopping journey,
+              making every interaction memorable and impactful.
             </p>
             <ul className="flex items-center gap-2">
               <a href="#" target="_blank" rel="noreferrer">
@@ -119,27 +122,29 @@ const Footer = () => {
                 Subscribed Successfully !
               </motion.p>
             ) : (
-              <div className="w-full flex-col xl:flex-row flex justify-between items-center gap-4">
-                <div className="flex flex-col w-full">
-                  <input
-                    onChange={(e) => setEmailInfo(e.target.value)}
-                    value={emailInfo}
-                    className="w-full h-12 border-b border-gray-400 bg-transparent px-4 text-primeColor text-lg placeholder:text-base outline-none"
-                    type="text"
-                    placeholder="Insert your email ...*"
-                  />
-                  {errMsg && (
-                    <p className="text-red-600 text-sm font-semibold font-titleFont text-center animate-bounce mt-2">
-                      {errMsg}
-                    </p>
-                  )}
+              <div className="w-full flex justify-center items-center py-6">
+                <div className="flex flex-col xl:flex-row justify-between items-center gap-4 p-6 border border-gray-300 rounded-lg bg-gray-100 dark:bg-gray-800 dark:border-gray-600">
+                  <div className="flex flex-col w-full">
+                    <input
+                      onChange={(e) => setEmailInfo(e.target.value)}
+                      value={emailInfo}
+                      className="w-full h-12 border-b border-gray-400 bg-transparent px-4 text-primeColor text-lg placeholder:text-base outline-none"
+                      type="text"
+                      placeholder="Please Enter Your Email"
+                    />
+                    {errMsg && (
+                      <p className="text-red-600 text-sm font-semibold font-titleFont text-center animate-bounce mt-2">
+                        {errMsg}
+                      </p>
+                    )}
+                  </div>
+                  <button
+                    onClick={handleSubscription}
+                    className="bg-white text-lightText w-[30%] h-10 rounded-md hover:bg-black hover:text-white duration-300 text-base tracking-wide"
+                  >
+                    Subscribe
+                  </button>
                 </div>
-                <button
-                  onClick={handleSubscription}
-                  className="bg-white text-lightText w-[30%] h-10 hover:bg-black hover:text-white duration-300 text-base tracking-wide"
-                >
-                  Subscribe
-                </button>
               </div>
             )}
           </div>
