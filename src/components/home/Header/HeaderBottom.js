@@ -42,7 +42,7 @@ const HeaderBottom = () => {
     <div className="w-full bg-[#F5F5F3] relative">
       <div className="max-w-container mx-auto">
         <Flex className="flex flex-col lg:flex-row items-start lg:items-center justify-between w-full px-4 pb-4 lg:pb-0 h-full lg:h-24">
-          <div
+          {/* <div
             onClick={() => setShow(!show)}
             ref={ref}
             className="flex h-14 cursor-pointer items-center gap-2 text-primeColor"
@@ -77,10 +77,10 @@ const HeaderBottom = () => {
                 </li>
               </motion.ul>
             )}
-          </div>
+          </div> */}
           <div className="relative w-full lg:w-[600px] h-[50px] text-base text-primeColor bg-white flex items-center gap-2 justify-between px-6 rounded-xl">
             <input
-              className="flex-1 h-full outline-none placeholder:text-[#C4C4C4] placeholder:text-[14px]"
+              className="flex-1 text-center h-full outline-none placeholder:text-[#C4C4C4] placeholder:text-[14px]"
               type="text"
               onChange={handleSearch}
               value={searchQuery}

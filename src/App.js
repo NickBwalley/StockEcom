@@ -1,10 +1,10 @@
 import {
   createBrowserRouter,
   RouterProvider,
-  Outlet,
   createRoutesFromElements,
   Route,
   ScrollRestoration,
+  Outlet,
 } from "react-router-dom";
 import Footer from "./components/home/Footer/Footer";
 import FooterBottom from "./components/home/Footer/FooterBottom";
@@ -22,6 +22,8 @@ import Offer from "./pages/Offer/Offer";
 import Payment from "./pages/payment/Payment";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Shop from "./pages/Shop/Shop";
+import DarkMode from "./pages/DarkMode/DarkMode";
+import { DarkModeProvider } from "./pages/DarkMode/DarkModeContext"; // Import context provider
 
 const Layout = () => {
   return (
@@ -36,17 +38,16 @@ const Layout = () => {
     </div>
   );
 };
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route path="/" element={<Layout />}>
-        {/* ==================== Header Navlink Start here =================== */}
         <Route index element={<Home />}></Route>
         <Route path="/shop" element={<Shop />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
         <Route path="/journal" element={<Journal />}></Route>
-        {/* ==================== Header Navlink End here ===================== */}
         <Route path="/offer" element={<Offer />}></Route>
         <Route path="/product/:_id" element={<ProductDetails />}></Route>
         <Route path="/cart" element={<Cart />}></Route>
@@ -60,9 +61,13 @@ const router = createBrowserRouter(
 
 function App() {
   return (
-    <div className="font-bodyFont">
-      <RouterProvider router={router} />
-    </div>
+    <DarkModeProvider>
+      <div className="font-bodyFont">
+        {/* Dark Mode Toggle */}
+        <DarkMode />
+        <RouterProvider router={router} />
+      </div>
+    </DarkModeProvider>
   );
 }
 

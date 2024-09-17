@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FaFacebook, FaYoutube, FaLinkedin, FaGithub } from "react-icons/fa";
 import FooterListTitle from "./FooterListTitle";
-import { paymentCard } from "../../../assets/images";
-import Image from "../../designLayouts/Image";
 
 const Footer = () => {
   const [emailInfo, setEmailInfo] = useState("");
@@ -38,17 +36,13 @@ const Footer = () => {
               ab ullam, numquam nesciunt in.
             </p>
             <ul className="flex items-center gap-2">
-              <a
-                href="https://www.youtube.com/@reactjsBD"
-                target="_blank"
-                rel="noreferrer"
-              >
+              <a href="#" target="_blank" rel="noreferrer">
                 <li className="w-7 h-7 bg-primeColor text-gray-100 hover:text-white cursor-pointer text-lg rounded-full flex justify-center items-center hover:bg-black duration-300">
                   <FaYoutube />
                 </li>
               </a>
               <a
-                href="https://github.com/noorjsdivs"
+                href="https://github.com/NickBwalley"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -56,17 +50,12 @@ const Footer = () => {
                   <FaGithub />
                 </li>
               </a>
+              <li className="w-7 h-7 bg-primeColor text-gray-100 hover:text-white cursor-pointer text-lg rounded-full flex justify-center items-center hover:bg-black duration-300">
+                <FaFacebook />
+              </li>
+
               <a
-                href="https://www.facebook.com/Noorlalu143/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <li className="w-7 h-7 bg-primeColor text-gray-100 hover:text-white cursor-pointer text-lg rounded-full flex justify-center items-center hover:bg-black duration-300">
-                  <FaFacebook />
-                </li>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/noor-mohammad-ab2245193/"
+                href="https://www.linkedin.com/in/nick-bwalley-49220a269/"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -112,16 +101,13 @@ const Footer = () => {
             <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
               Account Details
             </li>
-            <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
-              Payment Options
-            </li>
           </ul>
         </div>
         <div className="col-span-2 flex flex-col items-center w-full px-4">
           <FooterListTitle title="Subscribe to our newsletter." />
           <div className="w-full">
             <p className="text-center mb-4">
-              A at pellentesque et mattis porta enim elementum.
+              Enter your email address to receive new offer alerts!.
             </p>
             {subscription ? (
               <motion.p
@@ -156,13 +142,6 @@ const Footer = () => {
                 </button>
               </div>
             )}
-
-            <Image
-              className={`w-[80%] lg:w-[60%] mx-auto ${
-                subscription ? "mt-2" : "mt-6"
-              }`}
-              imgSrc={paymentCard}
-            />
           </div>
         </div>
       </div>

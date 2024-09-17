@@ -9,7 +9,7 @@ import YearProduct from "../../components/home/YearProduct/YearProduct";
 
 const Home = () => {
   return (
-    <div className="w-full mx-auto">
+    <div className="w-full mx-auto bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
       <Banner />
       <BannerBottom />
       <div className="max-w-container mx-auto px-4">
