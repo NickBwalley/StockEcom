@@ -6,6 +6,7 @@ import Flex from "../../designLayouts/Flex";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { paginationItems } from "../../../constants";
+import DarkMode from "../../../pages/DarkMode/DarkMode";
 
 const HeaderBottom = () => {
   const products = useSelector((state) => state.orebiReducer.products);
@@ -13,15 +14,15 @@ const HeaderBottom = () => {
   const [showUser, setShowUser] = useState(false);
   const navigate = useNavigate();
   const ref = useRef();
-  useEffect(() => {
-    document.body.addEventListener("click", (e) => {
-      if (ref.current.contains(e.target)) {
-        setShow(true);
-      } else {
-        setShow(false);
-      }
-    });
-  }, [show, ref]);
+  // useEffect(() => {
+  //   document.body.addEventListener("click", (e) => {
+  //     if (ref.current.contains(e.target)) {
+  //       setShow(true);
+  //     } else {
+  //       setShow(false);
+  //     }
+  //   });
+  // }, [show, ref]);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -39,7 +40,7 @@ const HeaderBottom = () => {
   }, [searchQuery]);
 
   return (
-    <div className="w-full bg-[#F5F5F3] relative">
+    <div className="w-full bg-[#F5F5F3] relative dark:bg-gray-800 dark:text-white">
       <div className="max-w-container mx-auto">
         <Flex className="flex flex-col lg:flex-row items-start lg:items-center justify-between w-full px-4 pb-4 lg:pb-0 h-full lg:h-24">
           {/* <div
@@ -78,9 +79,9 @@ const HeaderBottom = () => {
               </motion.ul>
             )}
           </div> */}
-          <div className="relative w-full lg:w-[600px] h-[50px] text-base text-primeColor bg-white flex items-center gap-2 justify-between px-6 rounded-xl">
+          <div className="relative w-full lg:w-[600px] h-[50px] text-base text-primeColor bg-white flex items-center gap-2 justify-between px-6 rounded-xl dark:bg-gray-800 dark:text-white">
             <input
-              className="flex-1 text-center h-full outline-none placeholder:text-[#C4C4C4] placeholder:text-[14px]"
+              className="flex-1 text-center h-full outline-none placeholder:text-[#C4C4C4] placeholder:text-[14px] dark:bg-gray-800 dark:text-white"
               type="text"
               onChange={handleSearch}
               value={searchQuery}
@@ -168,6 +169,8 @@ const HeaderBottom = () => {
                 </span>
               </div>
             </Link>
+            {/* ADD HERE DARK MODE ICON THEME!!! */}
+            <DarkMode />
           </div>
         </Flex>
       </div>

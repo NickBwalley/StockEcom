@@ -9,17 +9,19 @@ const About = () => {
     setPrevLocation(location.state.data);
   }, [location]);
   return (
-    <div className="max-w-container mx-auto px-4">
+    <div className="max-w-container max-w-full px-4 bg-white dark:bg-gray-800 dark:text-white">
       <Breadcrumbs title="About" prevLocation={prevLocation} />
       <div className="pb-10">
-        <h1 className="max-w-[600px] text-base text-lightText mb-2">
-          <span className="text-primeColor font-semibold text-lg">Orebi</span>{" "}
+        <h1 className="max-w-[600px] text-base mb-2 dark:bg-gray-800 dark:text-white">
+          <span className=" font-semibold text-lg dark:bg-gray-800 dark:text-white">
+            StockEcom
+          </span>{" "}
           is one of the world's leading ecommerce brands and is internationally
           recognized for celebrating the essence of classic Worldwide cool
           looking style.
         </h1>
         <Link to="/shop">
-          <button className="w-52 h-10 bg-primeColor text-white hover:bg-black duration-300">
+          <button className="w-52 h-10  text-white hover:bg-black duration-300">
             Continue Shopping
           </button>
         </Link>

@@ -9,19 +9,18 @@ const Contact = () => {
     setPrevLocation(location.state.data);
   }, [location]);
 
-  const [clientName, setclientName] = useState("");
+  const [clientName, setClientName] = useState("");
   const [email, setEmail] = useState("");
   const [messages, setMessages] = useState("");
 
-  // ========== Error Messages Start here ============
+  // Error Messages
   const [errClientName, setErrClientName] = useState("");
   const [errEmail, setErrEmail] = useState("");
   const [errMessages, setErrMessages] = useState("");
-  // ========== Error Messages End here ==============
   const [successMsg, setSuccessMsg] = useState("");
 
   const handleName = (e) => {
-    setclientName(e.target.value);
+    setClientName(e.target.value);
     setErrClientName("");
   };
   const handleEmail = (e) => {
@@ -33,13 +32,11 @@ const Contact = () => {
     setErrMessages("");
   };
 
-  // ================= Email Validation start here =============
   const EmailValidation = (email) => {
     return String(email)
       .toLowerCase()
       .match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i);
   };
-  // ================= Email Validation End here ===============
 
   const handlePost = (e) => {
     e.preventDefault();
@@ -58,87 +55,90 @@ const Contact = () => {
     }
     if (clientName && email && EmailValidation(email) && messages) {
       setSuccessMsg(
-        `Thank you dear ${clientName}, Your messages has been received successfully. Futher details will sent to you by your email at ${email}.`
+        `Thank you dear ${clientName}, Your messages has been received successfully. Further details will be sent to you by your email at ${email}.`
       );
     }
   };
 
   return (
-    <div className="max-w-container mx-auto px-4">
+    <div className="max-w-container  max-w-full  dark:bg-gray-800 dark:text-white">
       <Breadcrumbs title="Contact" prevLocation={prevLocation} />
-      {successMsg ? (
-        <p className="pb-20 w-96 font-medium text-green-500">{successMsg}</p>
-      ) : (
-        <form className="pb-20">
-          <h1 className="font-titleFont font-semibold text-3xl">
-            Fill up a Form
-          </h1>
-          <div className="w-[500px] h-auto py-6 flex flex-col gap-6">
-            <div>
-              <p className="text-base font-titleFont font-semibold px-2">
-                Name
-              </p>
-              <input
-                onChange={handleName}
-                value={clientName}
-                className="w-full py-1 border-b-2 px-2 text-base font-medium placeholder:font-normal placeholder:text-sm outline-none focus-within:border-primeColor"
-                type="text"
-                placeholder="Enter your name here"
-              />
-              {errClientName && (
-                <p className="text-red-500 text-sm font-titleFont font-semibold mt-1 px-2 flex items-center gap-1">
-                  <span className="text-sm italic font-bold">!</span>
-                  {errClientName}
+      <div className="flex justify-center items-center min-h-screen">
+        {successMsg ? (
+          <p className="w-96 font-medium text-green-500 text-center">
+            {successMsg}
+          </p>
+        ) : (
+          <form className="w-full max-w-md p-6 bg-white dark:bg-gray-900 rounded-lg shadow-md">
+            <h1 className="font-titleFont font-semibold text-3xl mb-6 text-center">
+              Fill up a Form
+            </h1>
+            <div className="flex flex-col gap-6">
+              <div>
+                <p className="text-base font-titleFont font-semibold mb-2">
+                  Name
                 </p>
-              )}
-            </div>
-            <div>
-              <p className="text-base font-titleFont font-semibold px-2">
-                Email
-              </p>
-              <input
-                onChange={handleEmail}
-                value={email}
-                className="w-full py-1 border-b-2 px-2 text-base font-medium placeholder:font-normal placeholder:text-sm outline-none focus-within:border-primeColor"
-                type="email"
-                placeholder="Enter your name here"
-              />
-              {errEmail && (
-                <p className="text-red-500 text-sm font-titleFont font-semibold mt-1 px-2 flex items-center gap-1">
-                  <span className="text-sm italic font-bold">!</span>
-                  {errEmail}
+                <input
+                  onChange={handleName}
+                  value={clientName}
+                  className="w-full py-2 border-b-2 px-2 text-base font-medium placeholder:font-normal placeholder:text-sm outline-none focus-within:border-primeColor dark:bg-gray-800 dark:text-white"
+                  type="text"
+                  placeholder="Enter your name here"
+                />
+                {errClientName && (
+                  <p className="text-red-500 text-sm font-titleFont font-semibold mt-1 flex items-center gap-1">
+                    <span className="text-sm italic font-bold">!</span>
+                    {errClientName}
+                  </p>
+                )}
+              </div>
+              <div>
+                <p className="text-base font-titleFont font-semibold mb-2">
+                  Email
                 </p>
-              )}
-            </div>
-            <div>
-              <p className="text-base font-titleFont font-semibold px-2">
-                Messages
-              </p>
-              <textarea
-                onChange={handleMessages}
-                value={messages}
-                cols="30"
-                rows="3"
-                className="w-full py-1 border-b-2 px-2 text-base font-medium placeholder:font-normal placeholder:text-sm outline-none focus-within:border-primeColor resize-none"
-                type="text"
-                placeholder="Enter your name here"
-              ></textarea>
-              {errMessages && (
-                <p className="text-red-500 text-sm font-titleFont font-semibold mt-1 px-2 flex items-center gap-1">
-                  <span className="text-sm italic font-bold">!</span>
-                  {errMessages}
+                <input
+                  onChange={handleEmail}
+                  value={email}
+                  className="w-full py-2 border-b-2 px-2 text-base font-medium placeholder:font-normal placeholder:text-sm outline-none focus-within:border-primeColor dark:bg-gray-800 dark:text-white"
+                  type="email"
+                  placeholder="Enter your email here"
+                />
+                {errEmail && (
+                  <p className="text-red-500 text-sm font-titleFont font-semibold mt-1 flex items-center gap-1">
+                    <span className="text-sm italic font-bold">!</span>
+                    {errEmail}
+                  </p>
+                )}
+              </div>
+              <div>
+                <p className="text-base font-titleFont font-semibold mb-2">
+                  Messages
                 </p>
-              )}
+                <textarea
+                  onChange={handleMessages}
+                  value={messages}
+                  cols="30"
+                  rows="4"
+                  className="w-full py-2 border-b-2 px-2 text-base font-medium placeholder:font-normal placeholder:text-sm outline-none focus-within:border-primeColor dark:bg-gray-800 dark:text-white resize-none"
+                  placeholder="Enter your message here"
+                ></textarea>
+                {errMessages && (
+                  <p className="text-red-500 text-sm font-titleFont font-semibold mt-1 flex items-center gap-1">
+                    <span className="text-sm italic font-bold">!</span>
+                    {errMessages}
+                  </p>
+                )}
+              </div>
+              <button
+                onClick={handlePost}
+                className="w-full bg-primeColor text-gray-200 h-10 font-titleFont text-base tracking-wide font-semibold hover:bg-black hover:text-white duration-200"
+              >
+                Post
+              </button>
             </div>
-            <button
-              onClick={handlePost}
-              className="w-44 bg-primeColor text-gray-200 h-10 font-titleFont text-base tracking-wide font-semibold hover:bg-black hover:text-white duration-200"
-            >
-              Post
-            </button>
-          </div>
-        </form>
-      )}
+          </form>
+        )}
+      </div>
     </div>
   );
 };
