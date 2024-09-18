@@ -14,9 +14,9 @@ app.get("/api/special-offers", async (req, res) => {
     const response = await axios.post(
       "https://api.openai.com/v1/completions",
       {
-        model: "text-davinci-003",
+        model: "text-davinci-004",
         prompt:
-          "Generate a list of ecommerce products with prices and descriptions for special offers.",
+          "Generate a list of ecommerce products with prices and descriptions in a structured JSON format.",
         max_tokens: 150,
         temperature: 0.7,
       },
@@ -27,12 +27,39 @@ app.get("/api/special-offers", async (req, res) => {
       }
     );
 
-    // Parse the generated text to JSON format (assuming the OpenAI API returns a valid JSON string)
-    const products = JSON.parse(response.data.choices[0].text);
+    console.log("OpenAI API Response:", response.data);
 
-    res.json(products);
+    const generatedText = response.data.choices[0].text.trim();
+
+    // Attempt to parse the response text as JSON
+    let products;
+    try {
+      products = JSON.parse(generatedText);
+    } catch (parseError) {
+      console.error("Error parsing JSON:", parseError.message);
+      console.error("Generated text:", generatedText);
+      return res.status(500).json({
+        error: "Failed to parse product data",
+        details: generatedText,
+      });
+    }
+
+    // Customize response structure if needed
+    const enrichedProducts = products.map((product) => ({
+      ...product, // Maintain existing product data
+      id: Math.floor(Math.random() * 100000), // Generate a random ID
+    }));
+
+    res.json(enrichedProducts);
   } catch (error) {
-    console.error("Error fetching products from OpenAI:", error);
+    console.error("Error fetching products from OpenAI:", error.message);
+    if (error.response) {
+      console.error("OpenAI API Error Response:", error.response.data);
+      return res.status(500).json({
+        error: "OpenAI API error",
+        details: error.response.data,
+      });
+    }
     res.status(500).json({ error: "Failed to fetch products" });
   }
 });
