@@ -5,7 +5,7 @@ from .models import UserProfile
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'password']
+        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'is_staff', 'password']
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
@@ -14,7 +14,8 @@ class UserSerializer(serializers.ModelSerializer):
             email=validated_data['email'],
             first_name=validated_data['first_name'],
             last_name=validated_data['last_name'],
-            password=validated_data['password']
+            password=validated_data['password'],
+            is_staff=validated_data.get('is_staff', False)
         )
         return user
     def update(self, instance, validated_data):
@@ -23,6 +24,7 @@ class UserSerializer(serializers.ModelSerializer):
         instance.email = validated_data.get('email', instance.email)
         instance.first_name = validated_data.get('first_name', instance.first_name)
         instance.last_name = validated_data.get('last_name', instance.last_name)
+        instance.is_staff = validated_data.get('is_staff', instance.is_staff)
         
         # Don't update the password unless explicitly provided
         password = validated_data.get('password', None)
@@ -37,7 +39,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserProfile
-        fields = ['user', 'role']
+        fields = ['user', 'country', 'city', 'street', 'postal_code']
 
     def create(self, validated_data):
         user_data = validated_data.pop('user')
@@ -48,14 +50,15 @@ class UserProfileSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         # Extract the nested user data
         user_data = validated_data.pop('user', {})
-
-        # Update the nested user instance using the UserSerializer
         user_serializer = UserSerializer(instance=instance.user, data=user_data, partial=True)
         if user_serializer.is_valid():
             user_serializer.save()
 
-        # Update the UserProfile-specific fields (e.g., role)
-        instance.role = validated_data.get('role', instance.role)
-        instance.save()
+        # Update the UserProfile fields
+        instance.country = validated_data.get('country', instance.country)
+        instance.city = validated_data.get('city', instance.city)
+        instance.street = validated_data.get('street', instance.street)
+        instance.postal_code = validated_data.get('postal_code', instance.postal_code)
 
+        instance.save()
         return instance

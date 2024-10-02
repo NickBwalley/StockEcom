@@ -2,14 +2,13 @@ from django.contrib.auth.models import User
 from django.db import models
 
 class UserProfile(models.Model):
-    USER_ROLES = [
-        ('customer', 'Customer'),
-        ('seller', 'Seller'),
-        ('admin', 'Admin'),
-    ]
-
+    
+    # User fields for addresses
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    role = models.CharField(max_length=10, choices=USER_ROLES, default='customer')
+    country = models.CharField(max_length=100, blank=True, null=True)
+    city = models.CharField(max_length=100, blank=True, null=True)
+    street = models.CharField(max_length=255, blank=True, null=True)
+    postal_code = models.CharField(max_length=20, blank=True, null=True)
 
     def __str__(self):
-        return f'{self.user.username} - {self.get_role_display()}'
+        return f'{self.user.username} - {self.user.get_full_name()}'
