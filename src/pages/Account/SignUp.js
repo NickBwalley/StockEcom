@@ -5,60 +5,43 @@ import { logoLight } from "../../assets/images";
 
 const SignUp = () => {
   // ============= Initial State Start here =============
-  const [clientName, setClientName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
-  const [zip, setZip] = useState("");
   const [checked, setChecked] = useState(false);
   // ============= Initial State End here ===============
   // ============= Error Msg Start here =================
-  const [errClientName, setErrClientName] = useState("");
+  const [errFirstName, setErrFirstName] = useState("");
+  const [errLastName, setErrLastName] = useState("");
+  const [errUsername, setErrUsername] = useState("");
   const [errEmail, setErrEmail] = useState("");
-  const [errPhone, setErrPhone] = useState("");
   const [errPassword, setErrPassword] = useState("");
-  const [errAddress, setErrAddress] = useState("");
-  const [errCity, setErrCity] = useState("");
-  const [errCountry, setErrCountry] = useState("");
-  const [errZip, setErrZip] = useState("");
   // ============= Error Msg End here ===================
   const [successMsg, setSuccessMsg] = useState("");
   // ============= Event Handler Start here =============
-  const handleName = (e) => {
-    setClientName(e.target.value);
-    setErrClientName("");
+  const handleFirstName = (e) => {
+    setFirstName(e.target.value);
+    setErrFirstName("");
   };
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
-    setErrEmail("");
+  const handleLastName = (e) => {
+    setLastName(e.target.value);
+    setErrLastName("");
   };
-  const handlePhone = (e) => {
-    setPhone(e.target.value);
-    setErrPhone("");
+  const handleUsername = (e) => {
+    setUsername(e.target.value);
+    setErrUsername("");
   };
   const handlePassword = (e) => {
     setPassword(e.target.value);
     setErrPassword("");
   };
-  const handleAddress = (e) => {
-    setAddress(e.target.value);
-    setErrAddress("");
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+    setErrEmail("");
   };
-  const handleCity = (e) => {
-    setCity(e.target.value);
-    setErrCity("");
-  };
-  const handleCountry = (e) => {
-    setCountry(e.target.value);
-    setErrCountry("");
-  };
-  const handleZip = (e) => {
-    setZip(e.target.value);
-    setErrZip("");
-  };
+
   // ============= Event Handler End here ===============
   // ================= Email Validation start here =============
   const EmailValidation = (email) => {
@@ -71,8 +54,11 @@ const SignUp = () => {
   const handleSignUp = (e) => {
     e.preventDefault();
     if (checked) {
-      if (!clientName) {
-        setErrClientName("Enter your name");
+      if (!firstName) {
+        setErrFirstName("Enter your firstname");
+      }
+      if (!lastName) {
+        setErrLastName("Enter your lastname");
       }
       if (!email) {
         setErrEmail("Enter your email");
@@ -81,8 +67,8 @@ const SignUp = () => {
           setErrEmail("Enter a Valid email");
         }
       }
-      if (!phone) {
-        setErrPhone("Enter your phone number");
+      if (!username) {
+        setErrUsername("Enter your username");
       }
       if (!password) {
         setErrPassword("Create a password");
@@ -91,41 +77,25 @@ const SignUp = () => {
           setErrPassword("Passwords must be at least 6 characters");
         }
       }
-      if (!address) {
-        setErrAddress("Enter your address");
-      }
-      if (!city) {
-        setErrCity("Enter your city name");
-      }
-      if (!country) {
-        setErrCountry("Enter the country you are residing");
-      }
-      if (!zip) {
-        setErrZip("Enter the zip code of your area");
-      }
+
       // ============== Getting the value ==============
       if (
-        clientName &&
+        firstName &&
+        lastName &&
         email &&
         EmailValidation(email) &&
         password &&
         password.length >= 6 &&
-        address &&
-        city &&
-        country &&
-        zip
+        username
       ) {
         setSuccessMsg(
-          `Hello dear ${clientName}, Welcome you to StockEcom Admin panel. We received your Sign up request. We are processing to validate your access. Till then stay connected and additional assistance will be sent to you by your mail at ${email}`
+          `Hello dear ${firstName}, Welcome you to StockEcom Admin panel. We received your Sign up request. We are processing to validate your access. Till then stay connected and additional assistance will be sent to you by your mail at ${email}`
         );
-        setClientName("");
+        setFirstName("");
+        setLastName("");
         setEmail("");
-        setPhone("");
+        setUsername("");
         setPassword("");
-        setAddress("");
-        setCity("");
-        setCountry("");
-        setZip("");
       }
     }
   };
@@ -222,26 +192,64 @@ const SignUp = () => {
                 {/* client name */}
                 <div className="flex flex-col gap-.5">
                   <p className="font-titleFont text-base font-semibold text-gray-600">
-                    Full Name
+                    FirstName
                   </p>
                   <input
-                    onChange={handleName}
-                    value={clientName}
+                    onChange={handleFirstName}
+                    value={firstName}
                     className="w-full h-8 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium placeholder:font-normal rounded-md border-[1px] border-gray-400 outline-none"
                     type="text"
                     placeholder="eg. Jai Nick"
                   />
-                  {errClientName && (
+                  {errFirstName && (
                     <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
                       <span className="font-bold italic mr-1">!</span>
-                      {errClientName}
+                      {errFirstName}
+                    </p>
+                  )}
+                </div>
+
+                <div className="flex flex-col gap-.5">
+                  <p className="font-titleFont text-base font-semibold text-gray-600">
+                    LastName
+                  </p>
+                  <input
+                    onChange={handleLastName}
+                    value={lastName}
+                    className="w-full h-8 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium placeholder:font-normal rounded-md border-[1px] border-gray-400 outline-none"
+                    type="text"
+                    placeholder="eg. Vishani"
+                  />
+                  {errLastName && (
+                    <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
+                      <span className="font-bold italic mr-1">!</span>
+                      {errLastName}
+                    </p>
+                  )}
+                </div>
+
+                <div className="flex flex-col gap-.5">
+                  <p className="font-titleFont text-base font-semibold text-gray-600">
+                    Username
+                  </p>
+                  <input
+                    onChange={handleUsername}
+                    value={lastName}
+                    className="w-full h-8 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium placeholder:font-normal rounded-md border-[1px] border-gray-400 outline-none"
+                    type="text"
+                    placeholder="eg. Jai Nick"
+                  />
+                  {errLastName && (
+                    <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
+                      <span className="font-bold italic mr-1">!</span>
+                      {errLastName}
                     </p>
                   )}
                 </div>
                 {/* Email */}
                 <div className="flex flex-col gap-.5">
                   <p className="font-titleFont text-base font-semibold text-gray-600">
-                    Work Email
+                    Email Address
                   </p>
                   <input
                     onChange={handleEmail}
@@ -257,25 +265,7 @@ const SignUp = () => {
                     </p>
                   )}
                 </div>
-                {/* Phone Number */}
-                <div className="flex flex-col gap-.5">
-                  <p className="font-titleFont text-base font-semibold text-gray-600">
-                    Phone Number
-                  </p>
-                  <input
-                    onChange={handlePhone}
-                    value={phone}
-                    className="w-full h-8 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium placeholder:font-normal rounded-md border-[1px] border-gray-400 outline-none"
-                    type="text"
-                    placeholder="0764549686"
-                  />
-                  {errPhone && (
-                    <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
-                      <span className="font-bold italic mr-1">!</span>
-                      {errPhone}
-                    </p>
-                  )}
-                </div>
+
                 {/* Password */}
                 <div className="flex flex-col gap-.5">
                   <p className="font-titleFont text-base font-semibold text-gray-600">
@@ -295,82 +285,27 @@ const SignUp = () => {
                     </p>
                   )}
                 </div>
-                {/* Address */}
+
+                {/* Password */}
                 <div className="flex flex-col gap-.5">
                   <p className="font-titleFont text-base font-semibold text-gray-600">
-                    Address
+                    Confirm Password
                   </p>
                   <input
-                    onChange={handleAddress}
-                    value={address}
+                    onChange={handlePassword}
+                    value={password}
                     className="w-full h-8 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium placeholder:font-normal rounded-md border-[1px] border-gray-400 outline-none"
-                    type="text"
-                    placeholder="road-001, house-115, example area"
+                    type="password"
+                    placeholder="Create password"
                   />
-                  {errAddress && (
+                  {errPassword && (
                     <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
                       <span className="font-bold italic mr-1">!</span>
-                      {errAddress}
+                      {errPassword}
                     </p>
                   )}
                 </div>
-                {/* City */}
-                <div className="flex flex-col gap-.5">
-                  <p className="font-titleFont text-base font-semibold text-gray-600">
-                    City
-                  </p>
-                  <input
-                    onChange={handleCity}
-                    value={city}
-                    className="w-full h-8 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium placeholder:font-normal rounded-md border-[1px] border-gray-400 outline-none"
-                    type="text"
-                    placeholder="Your city"
-                  />
-                  {errCity && (
-                    <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
-                      <span className="font-bold italic mr-1">!</span>
-                      {errCity}
-                    </p>
-                  )}
-                </div>
-                {/* Country */}
-                <div className="flex flex-col gap-.5">
-                  <p className="font-titleFont text-base font-semibold text-gray-600">
-                    Country
-                  </p>
-                  <input
-                    onChange={handleCountry}
-                    value={country}
-                    className="w-full h-8 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium placeholder:font-normal rounded-md border-[1px] border-gray-400 outline-none"
-                    type="text"
-                    placeholder="Your country"
-                  />
-                  {errCountry && (
-                    <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
-                      <span className="font-bold italic mr-1">!</span>
-                      {errCountry}
-                    </p>
-                  )}
-                </div>
-                {/* Zip code */}
-                <div className="flex flex-col gap-.5">
-                  <p className="font-titleFont text-base font-semibold text-gray-600">
-                    Zip/Postal code
-                  </p>
-                  <input
-                    onChange={handleZip}
-                    value={zip}
-                    className="w-full h-8 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium placeholder:font-normal rounded-md border-[1px] border-gray-400 outline-none"
-                    type="text"
-                    placeholder="Your country"
-                  />
-                  {errZip && (
-                    <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
-                      <span className="font-bold italic mr-1">!</span>
-                      {errZip}
-                    </p>
-                  )}
-                </div>
+
                 {/* Checkbox */}
                 <div className="flex items-start mdl:items-center gap-2">
                   <input
