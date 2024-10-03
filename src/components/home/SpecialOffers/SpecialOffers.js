@@ -17,10 +17,10 @@ const SpecialOffers = () => {
           _id="1101"
           img={spfOne}
           productName="Cap for Boys"
-          price="35.00"
+          price="45.00"
           color="Blank and White"
           badge={true}
-          des="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
+          des="if you wanna rock buy this!"
         />
         <Product
           _id="1102"
