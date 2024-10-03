@@ -1,17 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
 import { resetCart } from "../../redux/orebiSlice";
 import { emptyCart } from "../../assets/images/index";
 import ItemCard from "./ItemCard";
+import { toast } from "react-toastify"; // Assuming you're using react-toastify for toast messages
+import "react-toastify/dist/ReactToastify.css";
 
 const Cart = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate(); // For programmatic navigation
   const products = useSelector((state) => state.orebiReducer.products);
   const [totalAmt, setTotalAmt] = useState("");
   const [shippingCharge, setShippingCharge] = useState("");
+
+  const [userIsLoggedIn, setUserIsLoggedIn] = useState(false); // By default, user is not logged in
+
   useEffect(() => {
     let price = 0;
     products.map((item) => {
@@ -20,6 +26,7 @@ const Cart = () => {
     });
     setTotalAmt(price);
   }, [products]);
+
   useEffect(() => {
     if (totalAmt <= 200) {
       setShippingCharge(30);
@@ -29,6 +36,19 @@ const Cart = () => {
       setShippingCharge(20);
     }
   }, [totalAmt]);
+
+  // Handle checkout logic
+  const handleCheckout = () => {
+    if (!userIsLoggedIn) {
+      toast.error("Please SignIn first to complete this payment");
+      setTimeout(() => {
+        navigate("/signin");
+      }, 1500); // Adding a delay so the toast message can display
+    } else {
+      navigate("/payment-gateway");
+    }
+  };
+
   return (
     <div className="max-w-container max-w-full px-6 dark:bg-gray-800 dark:text-white">
       <Breadcrumbs title="Cart" />
@@ -79,11 +99,12 @@ const Cart = () => {
                 </p>
               </div>
               <div className="flex justify-end">
-                <Link to="/paymentgateway">
-                  <button className="w-52 h-10 bg-green-600 rounded-md text-white hover:bg-black duration-300">
-                    Proceed to Checkout
-                  </button>
-                </Link>
+                <button
+                  onClick={handleCheckout} // Call the function on click
+                  className="w-52 h-10 bg-green-600 rounded-md text-white hover:bg-black duration-300"
+                >
+                  Proceed to Checkout
+                </button>
               </div>
             </div>
           </div>

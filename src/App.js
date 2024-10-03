@@ -21,7 +21,8 @@ import Offer from "./pages/Offer/Offer";
 import Payment from "./pages/payment/Payment";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Shop from "./pages/Shop/Shop";
-import DarkMode from "./pages/DarkMode/DarkMode";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Layout = () => {
   return (
@@ -59,6 +60,7 @@ const router = createBrowserRouter(
 function App() {
   return (
     <div className="font-bodyFont">
+      <ToastContainer />
       <RouterProvider router={router} />
     </div>
   );
