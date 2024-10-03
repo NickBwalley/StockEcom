@@ -16,7 +16,7 @@ const Cart = () => {
   const [totalAmt, setTotalAmt] = useState("");
   const [shippingCharge, setShippingCharge] = useState("");
 
-  const [userIsLoggedIn, setUserIsLoggedIn] = useState(false); // By default, user is not logged in
+  const [userIsLoggedIn, setUserIsLoggedIn] = useState(true); // By default, user is not logged in
 
   useEffect(() => {
     let price = 0;
@@ -45,7 +45,10 @@ const Cart = () => {
         navigate("/signin");
       }, 1500); // Adding a delay so the toast message can display
     } else {
-      navigate("/payment-gateway");
+      toast.success("You are about to make these payment");
+      setTimeout(() => {
+        navigate("/paymentgateway");
+      }, 1500);
     }
   };
 
