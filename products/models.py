@@ -2,6 +2,8 @@ from django.db import models
 
 # Create your models here.
 from django.utils.text import slugify
+from django.utils import timezone
+from datetime import timedelta
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -26,6 +28,10 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    @property
+    def badge(self):
+        # Calculate if the product is "new" (added within the last 30 days)
+        return (timezone.now() - self.created_at) <= timedelta(days=30)
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
