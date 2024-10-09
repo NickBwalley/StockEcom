@@ -3,3 +3,5 @@ venv/
 product_images/
 Dockerfile
 docker-compose.yml
+frontend/
+node_modules/
