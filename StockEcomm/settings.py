@@ -129,7 +129,7 @@ DATABASES = {
         'NAME': os.environ.get('DB_NAME', 'Ecomm2'),
         'USER': os.environ.get('DB_USER', 'MainAdmin'),
         'PASSWORD': os.environ.get('DB_PASSWORD', 'admin'),
-        'HOST': 'localhost', #change to db when in docker
+        'HOST': 'db', #change to db when in docker
         'PORT': '5432',
     }
 }
