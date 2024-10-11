@@ -1,4 +1,4 @@
-# StoraEcommerce Website With Django + React
+# StoraEcommerce Website Django, React, React, PayPal Sandbox
 
 # Features
 
