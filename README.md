@@ -23,7 +23,7 @@
 git clone https://github.com/NickBwalley/StockEcom.git
 ```
 
-- 2 - cd proshop/
+- 2 - cd StockEcom/
 
 # Backend Setup Instructions
 
@@ -34,6 +34,7 @@ python -m venv env
 pip install -r requirements.txt # in the root directory
 python manage.py runserver # in the root directory
 ```
+* Run on server: localhost:8000
 
 # Frontend Setup Instructions
 
@@ -42,3 +43,4 @@ cd frontend/
 npm install
 npm start
 ```
+* Run on server: localhost:3000
