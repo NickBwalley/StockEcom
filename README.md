@@ -1,4 +1,4 @@
-# PropShop Ecommerce Website With Django + React
+# StoraEcommerce Website With Django + React
 
 # Features
 
