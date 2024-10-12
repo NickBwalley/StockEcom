@@ -1,116 +1,129 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { Form, Button, Row, Col } from 'react-bootstrap'
-import { useDispatch, useSelector } from 'react-redux'
-import Loader from '../components/Loader'
-import Message from '../components/Message'
-import FormContainer from '../components/FormContainer'
-import { register } from '../actions/userActions'
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { Form, Button, Row, Col } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import Loader from "../components/Loader";
+import Message from "../components/Message";
+import FormContainer from "../components/FormContainer";
+import { register } from "../actions/userActions";
 
 function RegisterScreen({ location, history }) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [message, setMessage] = useState("");
 
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [confirmPassword, setConfirmPassword] = useState('')
-    const [message, setMessage] = useState('')
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch()
+  const redirect = location.search ? location.search.split("=")[1] : "/";
 
-    const redirect = location.search ? location.search.split('=')[1] : '/'
+  const userRegister = useSelector((state) => state.userRegister);
+  const { error, loading, userInfo } = userRegister;
 
-    const userRegister = useSelector(state => state.userRegister)
-    const { error, loading, userInfo } = userRegister
-
-    useEffect(() => {
-        if (userInfo) {
-            history.push(redirect)
-        }
-    }, [history, userInfo, redirect])
-
-    const submitHandler = (e) => {
-        e.preventDefault()
-
-        if (password != confirmPassword) {
-            setMessage('Passwords do not match')
-        } else {
-            dispatch(register(name, email, password))
-        }
-
+  useEffect(() => {
+    if (userInfo) {
+      history.push(redirect);
     }
+  }, [history, userInfo, redirect]);
 
-    return (
-        <FormContainer>
-            <h1>Sign In</h1>
-            {message && <Message variant='danger'>{message}</Message>}
-            {error && <Message variant='danger'>{error}</Message>}
-            {loading && <Loader />}
-            <Form onSubmit={submitHandler}>
+  const submitHandler = (e) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      setMessage("Passwords do not match");
+    } else {
+      dispatch(register(name, email, password));
+    }
+  };
 
-                <Form.Group controlId='name'>
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control
-                        required
-                        type='name'
-                        placeholder='Enter name'
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    >
-                    </Form.Control>
-                </Form.Group>
+  return (
+    <FormContainer>
+      <h1 className="text-gray-900 dark:text-white">Register</h1>
+      {message && <Message variant="danger">{message}</Message>}
+      {error && <Message variant="danger">{error}</Message>}
+      {loading && <Loader />}
+      <Form
+        onSubmit={submitHandler}
+        className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-lg"
+      >
+        <Form.Group controlId="name">
+          <Form.Label className="text-gray-900 dark:text-white">
+            Name
+          </Form.Label>
+          <Form.Control
+            required
+            type="name"
+            placeholder="Enter name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
+          />
+        </Form.Group>
 
-                <Form.Group controlId='email'>
-                    <Form.Label>Email Address</Form.Label>
-                    <Form.Control
-                        required
-                        type='email'
-                        placeholder='Enter Email'
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    >
-                    </Form.Control>
-                </Form.Group>
+        <Form.Group controlId="email">
+          <Form.Label className="text-gray-900 dark:text-white">
+            Email Address
+          </Form.Label>
+          <Form.Control
+            required
+            type="email"
+            placeholder="Enter email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
+          />
+        </Form.Group>
 
-                <Form.Group controlId='password'>
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                        required
-                        type='password'
-                        placeholder='Enter Password'
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    >
-                    </Form.Control>
-                </Form.Group>
+        <Form.Group controlId="password">
+          <Form.Label className="text-gray-900 dark:text-white">
+            Password
+          </Form.Label>
+          <Form.Control
+            required
+            type="password"
+            placeholder="Enter password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
+          />
+        </Form.Group>
 
-                <Form.Group controlId='passwordConfirm'>
-                    <Form.Label>Confirm Password</Form.Label>
-                    <Form.Control
-                        required
-                        type='password'
-                        placeholder='Confirm Password'
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                    >
-                    </Form.Control>
-                </Form.Group>
+        <Form.Group controlId="passwordConfirm">
+          <Form.Label className="text-gray-900 dark:text-white">
+            Confirm Password
+          </Form.Label>
+          <Form.Control
+            required
+            type="password"
+            placeholder="Confirm password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            className="bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
+          />
+        </Form.Group>
 
-                <Button type='submit' variant='primary'>
-                    Register
-                </Button>
+        <Button
+          type="submit"
+          variant="primary"
+          className="bg-blue-500 dark:bg-blue-600 text-white rounded-lg hover:bg-blue-600 dark:hover:bg-blue-700 transition-all duration-200"
+        >
+          Register
+        </Button>
+      </Form>
 
-            </Form>
-
-            <Row className='py-3'>
-                <Col>
-                    Have an Account? <Link
-                        to={redirect ? `/login?redirect=${redirect}` : '/login'}>
-                        Sign In
-                        </Link>
-                </Col>
-            </Row>
-        </FormContainer >
-    )
+      <Row className="py-3">
+        <Col className="text-gray-900 dark:text-white">
+          Have an Account?{" "}
+          <Link
+            to={redirect ? `/login?redirect=${redirect}` : "/login"}
+            className="text-blue-500 dark:text-blue-400"
+          >
+            Sign In
+          </Link>
+        </Col>
+      </Row>
+    </FormContainer>
+  );
 }
 
-export default RegisterScreen
+export default RegisterScreen;

@@ -31,39 +31,57 @@ function LoginScreen({ location, history }) {
 
   return (
     <FormContainer>
-      <h1>Sign In</h1>
+      <h1 className="text-gray-900 dark:text-white">Sign In</h1>
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
-      <Form onSubmit={submitHandler}>
+      <Form
+        onSubmit={submitHandler}
+        className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-lg"
+      >
         <Form.Group controlId="email">
-          <Form.Label>Email Address</Form.Label>
+          <Form.Label className="text-gray-900 dark:text-white">
+            Email Address
+          </Form.Label>
           <Form.Control
             type="email"
             placeholder="Enter Email"
+            required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-          ></Form.Control>
+            className="bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
+          />
         </Form.Group>
 
         <Form.Group controlId="password">
-          <Form.Label>Password</Form.Label>
+          <Form.Label className="text-gray-900 dark:text-white">
+            Password
+          </Form.Label>
           <Form.Control
             type="password"
             placeholder="Enter Password"
+            required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-          ></Form.Control>
+            className="bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
+          />
         </Form.Group>
 
-        <Button type="submit" variant="primary">
+        <Button
+          type="submit"
+          variant="primary"
+          className="bg-blue-500 dark:bg-blue-600 text-white rounded-lg hover:bg-blue-600 dark:hover:bg-blue-700 transition-all duration-200"
+        >
           Sign In
         </Button>
       </Form>
 
       <Row className="py-3">
-        <Col>
+        <Col className="text-gray-900 dark:text-white">
           New Customer?{" "}
-          <Link to={redirect ? `/register?redirect=${redirect}` : "/register"}>
+          <Link
+            to={redirect ? `/register?redirect=${redirect}` : "/register"}
+            className="text-blue-500 dark:text-blue-400"
+          >
             Register
           </Link>
         </Col>
