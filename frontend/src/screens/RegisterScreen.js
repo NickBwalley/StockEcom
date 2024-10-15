@@ -6,6 +6,8 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import FormContainer from "../components/FormContainer";
 import { register } from "../actions/userActions";
+import { toast } from "react-toastify"; // Import React Toastify
+import "react-toastify/dist/ReactToastify.css"; // Import Toastify CSS
 
 function RegisterScreen({ location, history }) {
   const [name, setName] = useState("");
@@ -23,9 +25,13 @@ function RegisterScreen({ location, history }) {
 
   useEffect(() => {
     if (userInfo) {
-      history.push(redirect);
+      // Show success message using toast
+      toast.success(`User ${name} registered successfully!`, {
+        autoClose: 3000,
+      });
+      history.push(redirect); // Redirect after success
     }
-  }, [history, userInfo, redirect]);
+  }, [history, userInfo, redirect, name]);
 
   const submitHandler = (e) => {
     e.preventDefault();
