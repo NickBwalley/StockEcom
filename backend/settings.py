@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0.6/ref/settings/
 """
 
 import os
+import django_heroku
 from datetime import timedelta
 from pathlib import Path
 
@@ -24,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'sc%oco$+(3$z$at=z4j)#l-+ym)+_b11389mdt2^12m$bf63%@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
@@ -204,3 +205,5 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 if os.getcwd() == '/app':
     DEBUG = False
+
+django_heroku.settings(locals())
