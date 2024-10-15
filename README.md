@@ -13,7 +13,9 @@
 - Admin Order details page
 - Mark orders as delivered option
 - Checkout process (shipping, payment method, etc)
-- PayPal / credit card integration
+- PayPal / credit card integration (test with these sandbox credentials) 
+  * username: sb-dghav33161178@personal.example.com
+  * secret: u/N4LaH^
 
 # Download & Setup Instructions
 
