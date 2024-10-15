@@ -1,4 +1,4 @@
-# StoraEcommerce Website Django, React, React, PayPal Sandbox
+# StockEcommerce Website Django, React, React, PayPal Sandbox
 
 # Features
 
