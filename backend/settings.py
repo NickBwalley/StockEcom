@@ -1,3 +1,4 @@
+# CODED BY NICHOLAS BWALLEY: COMPLETED 202410152256
 """
 Django settings for backend project.
 
