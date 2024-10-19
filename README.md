@@ -22,7 +22,8 @@
 - 1 - Clone project:
 
 ```
-git clone https://github.com/NickBwalley/StockEcom.git
+git clone -b Nick https://github.com/NickBwalley/StockEcom.git
+
 ```
 
 - 2 - cd StockEcom/
@@ -30,11 +31,14 @@ git clone https://github.com/NickBwalley/StockEcom.git
 # Backend Setup Instructions
 
 ```
-cd backend/
 python -m venv env
 .env\scripts\activate
-pip install -r requirements.txt # in the root directory
-python manage.py runserver # in the root directory
+pip install -r requirements.txt
+python manage.py runserver
+
+// configuring postgresql
+python manage.py makemigrations
+python manage.py migrate
 ```
 
 - Run on server: http://127.0.0.1:8000/
