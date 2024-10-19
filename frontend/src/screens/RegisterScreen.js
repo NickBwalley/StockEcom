@@ -6,8 +6,6 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import FormContainer from "../components/FormContainer";
 import { register } from "../actions/userActions";
-import { toast } from "react-toastify"; // Import React Toastify
-import "react-toastify/dist/ReactToastify.css"; // Import Toastify CSS
 
 function RegisterScreen({ location, history }) {
   const [name, setName] = useState("");
@@ -15,6 +13,7 @@ function RegisterScreen({ location, history }) {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const dispatch = useDispatch();
 
@@ -25,11 +24,12 @@ function RegisterScreen({ location, history }) {
 
   useEffect(() => {
     if (userInfo) {
-      // Show success message using toast
-      toast.success(`User ${name} registered successfully!`, {
-        autoClose: 3000,
-      });
-      history.push(redirect); // Redirect after success
+      // Show success message without Toastify
+      setSuccessMessage(`User ${name} registered successfully!`);
+      setTimeout(() => {
+        setSuccessMessage(""); // Clear message after 3 seconds
+        history.push(redirect); // Redirect after success
+      }, 3000);
     }
   }, [history, userInfo, redirect, name]);
 
@@ -48,6 +48,7 @@ function RegisterScreen({ location, history }) {
       {message && <Message variant="danger">{message}</Message>}
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
+      {successMessage && <Message variant="success">{successMessage}</Message>}
       <Form
         onSubmit={submitHandler}
         className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-lg"
