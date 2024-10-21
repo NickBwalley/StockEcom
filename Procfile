@@ -1,1 +1,1 @@
-web: gunicorn stockecom1.wsgi --log-file -
+web: gunicorn StockEcom.wsgi --log-file -
