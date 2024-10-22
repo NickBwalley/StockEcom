@@ -132,27 +132,16 @@ git clone -b Nick https://github.com/NickBwalley/StockEcom.git
 
 - 2 - cd StockEcom/
 
-# Backend Setup Instructions
 
-```
-python -m venv env
-.env\scripts\activate
-pip install -r requirements.txt
-python manage.py runserver
+# Getting started
+To start the REST API server and the client application you   will need docker in your  machine
 
-// configuring postgresql
-python manage.py makemigrations
-python manage.py migrate
-```
+Build the image using docker-compose.yml from root:
 
-- Run on server: http://127.0.0.1:8000/
+`$ docker-compose build`
 
-# Frontend Setup Instructions
+Run the development environment/docker container on [http://localhost:8000/#/]:
 
-```
-cd frontend/
-npm install
-npm start
-```
+`$ docker-compose up`
 
-- Run on server: http://localhost:3000/#/
+Use `docker-compose down` to close the container process when done.
