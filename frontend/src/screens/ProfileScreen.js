@@ -62,6 +62,7 @@ function ProfileScreen({ history }) {
       setMessage("");
     }
   };
+
   return (
     <Row>
       <Col md={3}>
@@ -139,7 +140,7 @@ function ProfileScreen({ history }) {
             </thead>
 
             <tbody>
-              {orders.map((order) => (
+              {(Array.isArray(orders) ? orders : []).map((order) => (
                 <tr key={order._id}>
                   <td>{order._id}</td>
                   <td>{order.createdAt.substring(0, 10)}</td>
